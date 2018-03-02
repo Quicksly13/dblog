@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\PrincipleEntityRepository")
  * This entity class corresponds to a row in the database.
  */
-class PrincipleEntity
+class Principle
 {
     /**
      * @ORM\Id
