@@ -1,0 +1,62 @@
+{% extends "page.html.twig" %} 
+
+{% block navbar %}
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-inverse bg-dark justify-content-center">
+    <div class="col-md-4 col-sm-3  ">
+        <a class="nav-link dropdown-toggle navmenu" href={{ path('principles', {'title': title}) }} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            {{ title}}
+        </a>
+        <div class="dropdown-menu w-100 text-center nav-item bg-dark col-md-auto col-sm-auto" aria-labelledby="navbarDropdownMenuLink">
+            {% for principle in principlesInMenu %}
+              {% if principle.title == title %}
+                <a class="dropdown-item nav-link " href={{ path('principles', {'title': principle.title}) }}>
+                    <span class="navmenu">
+                      {{principle.title}}
+                    </span>
+                </a>
+              {% else %}
+                <a class="dropdown-item nav-link navmenu" href={{ path('principles', {'title': principle.title}) }}>
+                  {{principle.title}}
+                </a>
+              {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+</nav>
+
+
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="container-fluid w-50" style="margin-top:2em;margin-bottom:2em">
+
+
+  {# Display the explanation of the principle without stripping HTML tags used for formatting #}  
+  {{ explanation|striptags('<p>,<br>') }}
+
+
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;Read the previous</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+
+
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">Read the next&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock %}

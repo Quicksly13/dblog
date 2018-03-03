@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-</html>
-<html>
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--metadata for search engines-->
-    <meta name="description" content="{% block description %}Welcome!{% endblock %}">
-    <meta name="keywords" content="{% block keywords %}Welcome!{% endblock %}">
-    <link rel="canonical" href="">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="description" content= {{ description }} >
+    <meta name="keywords" content= {{ keywords }} >
+    <link rel="canonical" href={{ app.request.uri }}>
+    <title> {{ title }} </title>
 
-
-    <!--custom css based on bootstrap--
+    <!--custom css based on bootstrap
         <link rel="stylesheet" href="file:///C:/Users/Darryl/Desktop/custombs.css">-->
+    {# {% block css %} {% endblock css%} #}
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
@@ -30,34 +27,27 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
         crossorigin="anonymous"></script>
+
+    {% block javascripts %}{% endblock %}
+
+        
 </head>
 
+
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-inverse bg-dark justify-content-center">
-        <div class="col-md-4 col-sm-3  ">
-            <a class="nav-link dropdown-toggle navmenu" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                Content of Navigation-what & why
-            </a>
-            <div class="dropdown-menu w-100 text-center nav-item bg-dark col-md-auto col-sm-auto" aria-labelledby="navbarDropdownMenuLink">
-                {% block principlemenu %}
-                <a class="dropdown-item nav-link " href="#">
-                    <span class="navmenu">Who are you</span>
-                </a>
-                <a class="dropdown-item nav-link navmenu" href="#">Excitement of Existence</a>
-                <a class="dropdown-item nav-link navmenu" href="#">Use of Institutions</a>
-                {% endblock %}
-            </div>
-        </div>
+
+{% block navbar %} 
+    {# navbar html should be placed in this block #}
+{% endblock navbar %}
+
+    {% block content %}
+        {# html for the page content should be placed in this block #}
+    {% endblock %}
 
 
-    </nav>
-
-    {% block content %}{% endblock %}
-
-
-    <footer class="footer text-center">
-        <div class="container">
+    {% block footer %}
+        <footer class="footer text-center">
+            <div class="container">
 
 
             <span class="text-muted">
@@ -83,10 +73,11 @@
 
             </span>
 
-        </div>
-    </footer>
+            </div>
+        </footer>
 
-    {% block javascripts %}{% endblock %}
+    {% endblock footer %}
+
 </body>
 
 </html>

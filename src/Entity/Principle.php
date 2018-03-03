@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PrincipleEntityRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PrincipleRepository")
  * This entity class corresponds to a row in the database.
  */
 class Principle
