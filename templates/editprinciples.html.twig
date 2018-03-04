@@ -2,27 +2,18 @@
 
 
 
-
 {% block javascripts %}
-  <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-  <script>tinymce.init({ selector: 'textarea' });</script>
+  {# if principles are being edited or added #}
+  {% if title == 'Edit, add or remove the Principles Of' %}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+  {% endif %}
 {% endblock javascripts %}
 
 
 {% block navbar %} 
-{% for principle in principlesInMenu %}
-              {% if principle.title == title %}
-                <a class="dropdown-item nav-link " href={{ path('editprinciples', {'title': principle.title}) }}>
-                    <span class="navmenu">
-                      {{principle.title}}
-                    </span>
-                </a>
-              {% else %}
-                <a class="dropdown-item nav-link navmenu" href={{ path('editprinciples', {'title': principle.title}) }}>
-                  {{principle.title}}
-                </a>
-              {% endif %}
-          {% endfor %}
+
+
 
 {% endblock navbar %}
 
@@ -41,6 +32,8 @@
 
     
   {% else %}
+
+  {{ message }}
     
   {% endif %}
 

@@ -5,10 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PrincipleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PrincipleEntityRepository")
+ * @ORM\Table(name="principles")
  * This entity class corresponds to a row in the database.
  */
-class Principle
+class PrincipleEntity
 {
     /**
      * @ORM\Id
@@ -20,21 +21,21 @@ class Principle
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255, unique=true)
      * 
      * @var string $title
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      * 
      * @var string $description
      */
     private $description;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      * 
      * @var string $keywords
      */
@@ -52,7 +53,7 @@ class Principle
      *
      * @return integer $id
      */
-    public function getId() : integer
+    public function getId() 
     {
         return $this->id;
     }
@@ -62,7 +63,7 @@ class Principle
      *
      * @return string $title
      */
-    public function getTitle() : string
+    public function getTitle() 
     {
         return $this->title;
     }
@@ -72,7 +73,7 @@ class Principle
      *
      * @return string $title
      */
-    public function getDescription() : string
+    public function getDescription() 
     {
         return $this->description;
     }
@@ -82,7 +83,7 @@ class Principle
      *
      * @return string $title
      */
-    public function getKeywords() : string
+    public function getKeywords() 
     {
         return $this->keywords;
     }
@@ -92,9 +93,19 @@ class Principle
      *
      * @return string $title
      */
-    public function getExplanation() : string
+    public function getExplanation() 
     {
         return $this->explanation;
+    }
+
+    /**
+     * Sets the ID of this entity, corresponding to a database auto incremented primary key.
+     *
+     * @param integer $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
     }
 
     /**

@@ -4,21 +4,22 @@
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-inverse bg-dark justify-content-center">
     <div class="col-md-4 col-sm-3  ">
-        <a class="nav-link dropdown-toggle navmenu" href={{ path('principles', {'title': title}) }} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+        <a class="nav-link dropdown-toggle navmenu" href={{ path('viewprinciples', {'title': title}) }} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             {{ title}}
         </a>
         <div class="dropdown-menu w-100 text-center nav-item bg-dark col-md-auto col-sm-auto" aria-labelledby="navbarDropdownMenuLink">
-            {% for principle in principlesInMenu %}
-              {% if principle.title == title %}
-                <a class="dropdown-item nav-link " href={{ path('principles', {'title': principle.title}) }}>
+          {# Display all principle titles in the menu #}  
+          {% for principle in principlesInMenu %}
+              {% if principle == title %}
+                <a class="dropdown-item nav-link " href={{ path('viewprinciples', {'title': principle}) }}>
                     <span class="navmenu">
-                      {{principle.title}}
+                      {{principle}}
                     </span>
                 </a>
               {% else %}
-                <a class="dropdown-item nav-link navmenu" href={{ path('principles', {'title': principle.title}) }}>
-                  {{principle.title}}
+                <a class="dropdown-item nav-link navmenu" href={{ path('viewprinciples', {'title': principle}) }}>
+                  {{principle}}
                 </a>
               {% endif %}
           {% endfor %}
@@ -35,7 +36,7 @@
 
 
   {# Display the explanation of the principle without stripping HTML tags used for formatting #}  
-  {{ explanation|striptags('<p>,<br>') }}
+  {{ explanation|raw }}
 
 
 </div>

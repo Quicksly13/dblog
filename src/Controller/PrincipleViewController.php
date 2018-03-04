@@ -5,13 +5,13 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use App\Entity\Principle;
+use App\Entity\PrincipleEntity;
 
 class PrincipleViewController extends Controller
 {
     /**
      * @Route("/", name="home")
-     * @Route("/principles/{title}", name="principles", methods={"GET"}, defaults={"title"="Principle1"})
+     * @Route("/principles/{title}", name="viewprinciples", methods={"GET"}, defaults={"title"="Principle1"})
      * 
      * Displays principles on a web page.
      * 
@@ -21,7 +21,7 @@ class PrincipleViewController extends Controller
     public function display(string $title) : Response
     {
         //obtain the repository of principles
-        $principleRepository = $this->getDoctrine()->getRepository(Principle::class);
+        $principleRepository = $this->getDoctrine()->getRepository(PrincipleEntity::class);
 
         //get the principle to be viewed on this page
         $principleToView = $principleRepository->findOneBy(['title' => $title]);
@@ -30,12 +30,18 @@ class PrincipleViewController extends Controller
         $principlesInMenu = $principleRepository->findAllTitles();
        
         //render the web page with the principle to be viewed and a menu to view other principles
-        return $this->render('viewprinciples.html.twig', [
+        //obtain the HTTP response object containing the rendered page
+        $response =  $this->render('viewprinciples.html.twig', [
             'description' => $principleToView->getDescription(),
             'keywords' => $principleToView->getKeywords(),
             'title' => $principleToView->getTitle(),
             'explanation' => $principleToView->getExplanation(),
             'principlesInMenu' => $principlesInMenu
         ]);
+
+        //set the response to cache for 3600 seconds
+        $response->setSharedMaxAge(5);
+
+        return $response;
     }
 }
