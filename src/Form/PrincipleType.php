@@ -30,6 +30,7 @@ class PrincipleType extends AbstractType
                             return $value;
                         }
                         ])
+                    //adds form fields for submit buttons
                     ->add('go', SubmitType::class);
         }
         else
@@ -59,8 +60,9 @@ class PrincipleType extends AbstractType
                         'attr' => ['disabled' => $previewMode]//if form is already a preview, this field is disabled
                     ])
                     ->add('confirm', SubmitType::class, [
-                        'attr' => ['disabled' => $previewMode = false? true : false]
-                    ]);//the confirm button is added only in preview mode
+                        'attr' => ['disabled' => $previewMode === true ? false : true]//the confirm button is enabled only in preview mode
+                    ])
+                    ->add('cancel', SubmitType::class);
         }      
     }
 

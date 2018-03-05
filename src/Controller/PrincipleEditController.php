@@ -15,7 +15,7 @@ class PrincipleEditController extends Controller
     /**
      * @Route("/principles/edit/{title}", name="editprinciples", methods={"GET"}, defaults={"title"="select"})
      * 
-     * Displays a list of principles for editing, adding new or removing current.
+     * Displays either a list of principles for selecting whether to add or edit principles, or a form for adding new principles or editing existing ones.
      * 
      * @param string $title
      * @return object Symfony\Component\HttpFoundation\Response
@@ -106,31 +106,45 @@ class PrincipleEditController extends Controller
         //if the form's submit button has been clicked
         if ($clickedButton = $form->getClickedButton()) 
         {
-            if ('preview'===$clickedButton->getName())
-            {   
-                return $this->render('editprinciples.html.twig', [
-                    'description' => 'A secure access point for someone to',
-                    'keywords' => 'principles, confirm edit, ',
-                    'title' => 'Preview changes made to the Principles Of',
-                    'form' => $form->createView(),
-                ]);
-            }
-            elseif ('confirm'===$clickedButton->getName())
+            switch ($clickedButton->getName())
             {
-                //get the PrincipleEntity object loaded with data from the form
-                $principleToSave = $form->getData();
+                case 'preview':
+
+                    return $this->render('editprinciples.html.twig', [
+                        'description' => 'A secure access point for someone to',
+                        'keywords' => 'principles, confirm edit, ',
+                        'title' => 'Preview changes made to the Principles Of',
+                        'form' => $form->createView(),
+                    ]);
+
+                break;
+
+                case 'confirm':
+
+                    //get the PrincipleEntity object loaded with data from the form
+                    $principleToSave = $form->getData();
                 
-                //get the Doctrine Entity Manager and save the edited or added principle to the database
-                $principleDataManager = $this->getDoctrine()->getManager();
-                $principleDataManager->merge($principleToSave);
-                $principleDataManager->flush();
+                    //get the Doctrine Entity Manager and save the edited or added principle to the database
+                    $principleDataManager = $this->getDoctrine()->getManager();
+                    $principleDataManager->merge($principleToSave);
+                    $principleDataManager->flush();
                 
-                return $this->render('editprinciples.html.twig', [
-                    'description' => 'A secure access point for someone to',
-                    'keywords' => 'principles, confirm edit, ',
-                    'title' => 'Confirm that changes made to the Principles Of',
-                    'message' => 'Confirmed!'
-                ]);
+                    return $this->render('editprinciples.html.twig', [
+                        'description' => 'A secure access point for someone to',
+                        'keywords' => 'principles, confirm edit, ',
+                        'title' => 'Confirm that changes made to the Principles Of',
+                        'message' => 'Confirmed!'
+                    ]);
+
+                break;
+
+                case 'cancel':
+
+                    //send a RedirectResponse object to the display method of this controller
+                    return $this->redirectToRoute('editprinciples', ['title' => 'select']);
+
+                break;
+
             }
         }
 
