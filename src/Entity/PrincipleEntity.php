@@ -7,42 +7,42 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PrincipleEntityRepository")
  * @ORM\Table(name="principles")
- * This entity class corresponds to a row in the database.
+ * This entity class corresponds to a row in the database table.
  */
 class PrincipleEntity
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
      * 
      * @var integer $id
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(name="title", type="string", length=255, unique=true)
      * 
      * @var string $title
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255)
      * 
      * @var string $description
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="keywords", type="string", length=255)
      * 
      * @var string $keywords
      */
     private $keywords;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(name="explanation", type="text")
      * 
      * @var string $explanation
      */

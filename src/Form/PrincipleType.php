@@ -27,8 +27,8 @@ class PrincipleType extends AbstractType
                         'mapped' => false,
                         'choices' => $principles,
                         'choice_label' => function ($value, $key, $index) {//ensure the choice name is the same as value
-                            return $value;
-                        }
+                                return $value;
+                            }
                         ])
                     //adds form fields for submit buttons
                     ->add('go', SubmitType::class);
@@ -40,8 +40,8 @@ class PrincipleType extends AbstractType
 
             //adds form fields corresponding to Principle Entity properties
             $builder
-                    ->add('id', HiddenType::class, [
-                        'required' => false//needed for Doctrine to check if it's in the database already, should not be visible in form
+                    ->add('id', HiddenType::class, [//for Doctrine to check if principle is already in database, not visible in form
+                        'required' => false//not required so that adding a new principle is possible
                     ])
                     ->add('description', TextType::class, [
                         'attr' => ['readonly' => $previewMode]//if form is a preview, this field is readonly

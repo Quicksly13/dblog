@@ -15,7 +15,7 @@ class PrincipleEditController extends Controller
     /**
      * @Route("/principles/edit/{title}", name="editprinciples", methods={"GET"}, defaults={"title"="select"})
      * 
-     * Displays either a list of principles for selecting whether to add or edit principles, or a form for adding new principles or editing existing ones.
+     * Displays either a list of principles for selecting whether to add or edit principles, or a form for adding new principles and editing existing ones.
      * 
      * @param string $title
      * @return object Symfony\Component\HttpFoundation\Response
@@ -25,11 +25,31 @@ class PrincipleEditController extends Controller
         //obtain the Doctrine repository of principles
         $principleRepository = $this->getDoctrine()->getRepository(PrincipleEntity::class);
 
-        //by default, the form is not in select mode and no principles are required by it
-        $selectMode = false;
-        $principlesToSelect = [];
+        if ($title==='select')
+        {
+            //get titles of all principles for the select menu
+            $principlesToSelect = $principleRepository->findAllTitles();
 
-        switch ($title)
+            //no principle has been selected for editing
+            $principleToEdit = null;
+
+            //a selection must be made whether to edit a current principle or add a new one
+            $selectMode = true;
+        }
+        else
+        {
+            //get the specific principle to be edited on this page
+            //is null if the principle is not already in the database, so a new principle will be added
+            $principleToEdit = $principleRepository->findOneBy(['title' => $title]);
+            
+            //since a principle is being added or edited, the form is not in select mode
+            $selectMode = false;
+
+            //since a single principle is being added or edited, no additional principles are required by it
+            $principlesToSelect = [];
+        }
+
+        /*switch ($title)
         {
             case 'select':
 
@@ -57,9 +77,9 @@ class PrincipleEditController extends Controller
                 $principleToEdit = $principleRepository->findOneBy(['title' => $title]);
 
             break;
-        }
+        }*/
 
-         //create a form for selecting whether to add or edit principles, or for adding new principles or editing existing ones
+         //create a form for selecting whether to add or edit principles, or for adding new principles and editing existing ones
          $form = $this->createForm(PrincipleType::class, $principleToEdit, [
              'select_mode' => $selectMode,
              'action' => $this->generateUrl('confirmeditprinciples', ['title' => $title], UrlGeneratorInterface::ABSOLUTE_URL),
@@ -88,7 +108,7 @@ class PrincipleEditController extends Controller
     {
        if ('select'===$request->attributes->get('title'))//get the title portion of the URI route
         {
-            //from form data sent via HTTP POST, get the choice of which principle to edit or to add a new principle
+            //from principle form data sent via HTTP POST, get the choice of which principle to edit or to add a new principle
             $choice = $request->request->get('principle')['choose'];
 
             //send a RedirectResponse object to the display method of this controller
@@ -125,9 +145,9 @@ class PrincipleEditController extends Controller
                     $principleToSave = $form->getData();
                 
                     //get the Doctrine Entity Manager and save the edited or added principle to the database
-                    $principleDataManager = $this->getDoctrine()->getManager();
-                    $principleDataManager->merge($principleToSave);
-                    $principleDataManager->flush();
+                    $EntityManager = $this->getDoctrine()->getManager();
+                    $EntityManager->merge($principleToSave);
+                    $EntityManager->flush();
                 
                     return $this->render('editprinciples.html.twig', [
                         'description' => 'A secure access point for someone to',
