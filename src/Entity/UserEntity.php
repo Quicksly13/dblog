@@ -22,12 +22,18 @@ class UserEntity implements UserInterface, \Serializable
     private $id;
     
     /**
-     * @ORM\Column(name="username", type="string", length=25, unique=true)
+     * @ORM\Column(name="username", type="string", length=64, unique=true)
      * 
      * @var string $username
      */
     private $username;
 
+    /**
+     * A plain text password, this will not be saved in the database.
+     * It will be encoded with an encryption algorithim to get the password.
+     *
+     * @var string $plainPassword
+     */
     private $plainPassword;
 
     /**
@@ -45,6 +51,13 @@ class UserEntity implements UserInterface, \Serializable
     private $email;
 
     /**
+     * @ORM\Column(name="roles", type="string", length=255)
+     *
+     * @var string $roles
+     */
+    private $roles;
+
+    /**
      * @ORM\Column(name="is_active", type="boolean")
      * 
      * @var boolean $isActive
@@ -54,6 +67,8 @@ class UserEntity implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
+
+        $this->roles = json_encode(['ROLE_USER']);
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
@@ -103,11 +118,11 @@ class UserEntity implements UserInterface, \Serializable
     /**
      * Outputs the roles of this entity, corresponding to a database column.
      *
-     * @return array
+     * @return array $roles
      */
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return json_decode($this->roles);
     }
 
     public function eraseCredentials()
@@ -132,6 +147,18 @@ class UserEntity implements UserInterface, \Serializable
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * Sets the roles of this entity, corresponding to a database column.
+     *
+     * @param array $roles
+     */
+    public function setRoles(array $roles)
+    {
+        $this->getRoles()[] = $roles;
+
+        $this->roles = json_encode($roles);
     }
 
     /** @see \Serializable::serialize() */

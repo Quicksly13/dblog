@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class PrincipleEditController extends Controller
 {
     /**
-     * @Route("/principles/edit/{title}", name="editprinciples", methods={"GET"}, defaults={"title"="select"})
+     * @Route("/principles/edit/{title}", name="edit_principles", methods={"GET"}, defaults={"title"="select"})
      * 
      * Displays either a list of principles for selecting whether to add or edit principles, or a form for adding new principles and editing existing ones.
      * 
@@ -82,7 +82,7 @@ class PrincipleEditController extends Controller
          //create a form for selecting whether to add or edit principles, or for adding new principles and editing existing ones
          $form = $this->createForm(PrincipleType::class, $principleToEdit, [
              'select_mode' => $selectMode,
-             'action' => $this->generateUrl('confirmeditprinciples', ['title' => $title], UrlGeneratorInterface::ABSOLUTE_URL),
+             'action' => $this->generateUrl('confirm_principles', ['title' => $title], UrlGeneratorInterface::ABSOLUTE_URL),
              'method' => 'POST',
              'principles' => $principlesToSelect
         ]);
@@ -96,7 +96,7 @@ class PrincipleEditController extends Controller
     }
 
     /**
-     * @Route("/principles/edit/{title}", name="confirmeditprinciples", methods={"POST"}, defaults={"title"="select"})
+     * @Route("/principles/edit/{title}", name="confirm_principles", methods={"POST"}, defaults={"title"="select"})
      * 
      * Displays a page to confirm edits or additions to the principles.
      * Once confirmed, saves those changes to the database.
@@ -112,7 +112,7 @@ class PrincipleEditController extends Controller
             $choice = $request->request->get('principle')['choose'];
 
             //send a RedirectResponse object to the display method of this controller
-            return $this->redirectToRoute('editprinciples', ['title' => $choice]);
+            return $this->redirectToRoute('edit_principles', ['title' => $choice]);
         }
         
         //create a form for previewing submitted form data before saving changes to database
@@ -145,9 +145,9 @@ class PrincipleEditController extends Controller
                     $principleToSave = $form->getData();
                 
                     //get the Doctrine Entity Manager and save the edited or added principle to the database
-                    $EntityManager = $this->getDoctrine()->getManager();
-                    $EntityManager->merge($principleToSave);
-                    $EntityManager->flush();
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->merge($principleToSave);
+                    $entityManager->flush();
                 
                     return $this->render('editprinciples.html.twig', [
                         'description' => 'A secure access point for someone to',
@@ -161,7 +161,7 @@ class PrincipleEditController extends Controller
                 case 'cancel':
 
                     //send a RedirectResponse object to the display method of this controller
-                    return $this->redirectToRoute('editprinciples', ['title' => 'select']);
+                    return $this->redirectToRoute('edit_principles', ['title' => 'select']);
 
                 break;
 

@@ -11,7 +11,7 @@ class PrincipleViewController extends Controller
 {
     /**
      * @Route("/", name="home")
-     * @Route("/principles/{title}", name="viewprinciples", methods={"GET"}, defaults={"title"="Principle1"})
+     * @Route("/principles/{title}", name="view_principles", methods={"GET"}, defaults={"title"="Principle1"})
      * 
      * Displays principles on a web page.
      * 
