@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +11,9 @@ use App\Entity\PrincipleEntity;
 use App\Form\PrincipleType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * @Security("has_role('ROLE_USER')")
+ */
 class PrincipleEditController extends Controller
 {
     /**
@@ -20,7 +24,7 @@ class PrincipleEditController extends Controller
      * @param string $title
      * @return object Symfony\Component\HttpFoundation\Response
      */
-    public function display(string $title) : Response
+    public function display(string $title): Response
     {
         //obtain the Doctrine repository of principles
         $principleRepository = $this->getDoctrine()->getRepository(PrincipleEntity::class);
@@ -87,7 +91,7 @@ class PrincipleEditController extends Controller
              'principles' => $principlesToSelect
         ]);
 
-        return $this->render('editprinciples.html.twig', [
+        return $this->render('principles/editprinciples.html.twig', [
             'description' => 'A secure access point for someone to',
             'keywords' => 'principles, edit, ',
             'title' => 'Edit, add or remove the Principles Of',
@@ -104,7 +108,7 @@ class PrincipleEditController extends Controller
      * @param object Symfony\Component\HttpFoundation\Request $request
      * @return object Symfony\Component\HttpFoundation\Response
      */
-    public function confirm(Request $request) : Response
+    public function confirm(Request $request): Response
     {
        if ('select'===$request->attributes->get('title'))//get the title portion of the URI route
         {
@@ -130,7 +134,7 @@ class PrincipleEditController extends Controller
             {
                 case 'preview':
 
-                    return $this->render('editprinciples.html.twig', [
+                    return $this->render('principles/editprinciples.html.twig', [
                         'description' => 'A secure access point for someone to',
                         'keywords' => 'principles, confirm edit, ',
                         'title' => 'Preview changes made to the Principles Of',
@@ -149,7 +153,7 @@ class PrincipleEditController extends Controller
                     $entityManager->merge($principleToSave);
                     $entityManager->flush();
                 
-                    return $this->render('editprinciples.html.twig', [
+                    return $this->render('principles/editprinciples.html.twig', [
                         'description' => 'A secure access point for someone to',
                         'keywords' => 'principles, confirm edit, ',
                         'title' => 'Confirm that changes made to the Principles Of',

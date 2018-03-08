@@ -11,14 +11,14 @@ class PrincipleViewController extends Controller
 {
     /**
      * @Route("/", name="home")
-     * @Route("/principles/{title}", name="view_principles", methods={"GET"}, defaults={"title"="Principle1"})
+     * @Route("/principles/{title}", name="view_principles", methods={"GET"})
      * 
      * Displays principles on a web page.
      * 
-     * @param string $title
+     * @param string $title Default value is set here as default value in home route annotation causes mismatch for all routes
      * @return object Symfony\Component\HttpFoundation\Response
      */
-    public function display(string $title) : Response
+    public function display(string $title = 'Principle1'): Response
     {
         //obtain the repository of principles
         $principleRepository = $this->getDoctrine()->getRepository(PrincipleEntity::class);
@@ -31,7 +31,7 @@ class PrincipleViewController extends Controller
        
         //render the web page with the principle to be viewed and a menu to view other principles
         //obtain the HTTP response object containing the rendered page
-        $response =  $this->render('viewprinciples.html.twig', [
+        $response =  $this->render('principles/viewprinciples.html.twig', [
             'description' => $principleToView->getDescription(),
             'keywords' => $principleToView->getKeywords(),
             'title' => $principleToView->getTitle(),

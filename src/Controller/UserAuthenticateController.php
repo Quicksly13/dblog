@@ -9,17 +9,45 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\UserEntity;
 use App\Form\UserRegisterType;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Form\UserLoginType;
 
 class UserAuthenticateController extends Controller
 {
     /**
-     * @Route("/user/{authenticate}", name="user_new", methods={"POST", "GET"}, requirements={"authenticate"="register|reset"})
+     * @Route("/user/login", name="authenticate_user", methods={"POST", "GET"})
+     * 
+     * @param object Symfony\Component\HttpFoundation\Request $request
+     * @param object Symfony\Component\Security\Http\Authentication\AuthenticationUtils $authUtils
+     * @return object Symfony\Component\HttpFoundation\Response
+     */
+    public function login (Request $request, AuthenticationUtils $authUtils): Response
+    {
+        // get the login error if there is one
+        $error = $authUtils->getLastAuthenticationError();
+        
+        //last username entered by the user
+        $lastUsername = $authUtils->getLastUsername();
+
+        //create the form for logging users into their accounts
+        $form = $this->createForm(UserLoginType::class);
+
+        return $this->render('authenticateuser.html.twig', [
+            'description' => 'Provides a means for registered users to log into their accounts',
+            'keywords' => 'user, login, log in, authenticate, security, access',
+            'title' => 'Log in existing users',
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/user/{fresh}", name="freshen_user", methods={"POST", "GET"}, requirements={"authenticate"="register|reset"}, defaults={"fresh"="register"})
      * 
      * @param object Symfony\Component\HttpFoundation\Request $request
      * @param object Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $encoder
      * @return object Symfony\Component\HttpFoundation\Response
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder) : Response
+    public function register(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         //create the form for registering new users or resetting passwords on old ones
         $form = $this->createForm(UserRegisterType::class);
@@ -39,7 +67,7 @@ class UserAuthenticateController extends Controller
 
             //Save the User to the database
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            $entityManager->merge($user);
             $entityManager->flush();
 
             // ... do any other work - like sending them an email, etc
@@ -49,27 +77,11 @@ class UserAuthenticateController extends Controller
         }
 
         return $this->render('authenticateuser.html.twig', [
-            'description' => 'Provides a means for users to register themselve or reset passwords',
+            'description' => 'Provides a means for users to register themselves or reset passwords',
             'keywords' => 'users, register, reset',
             'title' => 'Register new users or reset their passwords',
             'form' => $form->createView()
         ]);
     }
 
-    /**
-     * @Route("/user/{authenticate}", name="user_session", methods={"POST", "GET"}, requirements={"authenticate"="login"})
-     * 
-     * @param object Symfony\Component\HttpFoundation\Request $request
-     * @return object Symfony\Component\HttpFoundation\Response
-     */
-    public function login () : Response
-    {
-
-        return $this->render('authenticateuser.html.twig', [
-            'description' => 'Provides a means for users to register themselve or reset passwords',
-            'keywords' => 'users, register, reset',
-            'title' => 'Register new users or reset their passwords',
-            'form' => $form->createView()
-        ]);
-    }
 }

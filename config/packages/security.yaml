@@ -24,12 +24,21 @@ security:
 
             provider: our_db_provider
             form_login:
-                login_path: user_session
-                check_path: user_session 
+                login_path: authenticate_user
+                check_path: authenticate_user
+                username_parameter: user_login[username] #name of the user login form field
+                password_parameter: user_login[password] #name of the user login form field
             # https://symfony.com/doc/current/security/form_login_setup.html
+            logout:
+                path: /user/logout
+                target: view_principles
+            
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        #- { path: ^/principles/edit, roles: ROLE_USER }
+        - { path: ^/user/register, roles: ROLE_USER }
+        - { path: ^/user/reset, roles: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
