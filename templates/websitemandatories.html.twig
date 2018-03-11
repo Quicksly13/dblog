@@ -1,0 +1,82 @@
+{% extends "page.html.twig" %} 
+
+
+{% block content %}
+
+<div class="container-fluid w-50" style="margin-top:2em;margin-bottom:2em">
+
+  {% if content=='contact' %}
+
+  <div class="text-center" style="margin-top:2em">
+      Share on&ensp;
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://readnobody.net/index.html" class="btn btn-default">Facebook</a>
+      &ensp;
+      <a href="https://twitter.com/home?status=https://readnobody.net/index.html" class="btn btn-default">Twitter</a>
+      &ensp;
+      <a href="http://www.tumblr.com/share/link?url=https://readnobody.net/index.html" target="blank_" class="btn btn-default">Tumblr</a>
+      &ensp;
+      <a href="whatsapp://send?text=https://readnobody.net/index.html" data-action="share/whatsapp/share" class="btn btn-default">WhatsApp</a>
+      &ensp;
+      <a href="http://www.reddit.com/submit?url=https://readnobody.net/index.html&title=Welcome%20to%20Nobody's%20World" class="btn btn-default">Reddit</a>
+      &ensp;
+      and whatever newfangled social network you kids are into these days.
+      </div>
+
+  <div class="text-center">
+      <h3 style="margin-top:2em">I'm listening, er, reading...</h3>
+      </div>
+      
+      <div class="text-center">
+      <p>
+      Want to give me a piece of your mind or heart? While the literal act may not be possible (where would I even store random organ parts, my refrigerator is full up!), you can still get in touch.<br>
+      Email nobodyreadsmail@gmail.com.<br>
+      Stalk nobody_on_reddit.<br>
+      Tweet @nbdytweets.<br>
+      
+      Keep in mind, I cannot guarantee a response quickly or at all, I may be busy saving the future or preserving the past (aren't time zones fun?). However, you have the word of Nothing Nobody that he will strive to receive your wisdom or stupidity, and might even reply!
+      </p>
+      </div>
+
+
+    
+  {% else %}
+
+  <h3>Terms of Use & Privacy Policy</h3>
+  <p style="margin-top:1em">
+  Standard Disclaimer:<br>
+  All content provided on this website is for informational and educational purposes only. The owner of this site makes no representations as to the accuracy or completeness of any information on this site or found by following any link on this site.
+  
+  The owner will not be liable for any errors or omissions in this information nor for the availability of this information. The owner will not be liable for any losses, injuries, hallucinations, curses, superpowers or damages from the display or use of this information.
+  </p>
+  
+  <p style="margin-top:1em">
+  Copyrights:<br> 
+  All original content on this website is the property of Nothing Nobody. This website has been developed using the open source <a href="http://getbootstrap.com/" class="plaintextlink">Bootstrap</a> framework. Images have been sourced from <a href="https://pixabay.com/" class="plaintextlink">Pixabay</a>.
+  
+  <p style="margin-top:1em">
+  Cookies:<br> 
+  This website uses "cookies". A cookie is a piece of data stored on a site visitor's hard drive to help improve your access to the site and identify repeat visitors to the site. For example, when a cookie is used to identify you, you would not have to log in with a password more than once, thereby saving time while on the site. Cookies also enable the site to track and target the interests of our users for the purpose of enhancing their experience on the site. Thanks to cookies, you don't have to worry about logging in on every page or answering any surveys about your experience.
+  </p>
+  
+  <p style="margin-top:1em">
+  Information Collection And Use:<br>
+  While using this site, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to your email address.
+  </p>
+  
+  <p style="margin-top:1em">
+  Links:<br>
+  This web site contains links to other sites. Please be aware that the owner of this site is not responsible for the content or privacy practices of other sites. Users are encouraged to be aware when they leave this site and to read the privacy statements of any other site that collects personally identifiable information.
+  </p>
+  
+  <p style="margin-top:1em">
+  Updates:<br>
+  Our Terms of Use and Privacy Policy may change from time to time and all updates will be posted on this page.
+  </p>
+  </div>
+    
+  {% endif %}
+
+</div>
+
+
+{% endblock %}

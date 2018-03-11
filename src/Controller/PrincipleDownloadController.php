@@ -30,7 +30,10 @@ class PrincipleDownloadController extends Controller
      */
     public function transfer(): Response
     {
-        return $this->file('assets/tale0.pdf');
+        $appPath = $this->container->getParameter('kernel.root_dir');
+        $webPath = realpath($appPath . '/../assets/tale0.pdf');
+
+        return $this->file($webPath);
 
     }
 }
