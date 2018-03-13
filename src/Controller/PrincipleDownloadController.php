@@ -30,10 +30,14 @@ class PrincipleDownloadController extends Controller
      */
     public function transfer(): Response
     {
+        //get the absolute directory path to the src folder
         $appPath = $this->container->getParameter('kernel.root_dir');
-        $webPath = realpath($appPath . '/../assets/tale0.pdf');
 
-        return $this->file($webPath);
+        //get the relative directory path to the file to be downloaded
+        $filePath = realpath($appPath . '/../assets/tale0.pdf');
+
+        //send a BinaryFileResponse to download the file
+        return $this->file($filePath);
 
     }
 }

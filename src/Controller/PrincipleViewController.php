@@ -28,6 +28,9 @@ class PrincipleViewController extends Controller
 
         //get titles of all principles for the menu
         $principlesInMenu = $principleRepository->findAllTitles();
+
+        //find the principles before and after the principle to be viewed on this page
+        $neighboursOfPrincipleToView = $principleRepository->findNeighboursByTitle($title, $principlesInMenu);
        
         //render the web page with the principle to be viewed and a menu to view other principles
         //obtain the HTTP response object containing the rendered page
@@ -36,6 +39,8 @@ class PrincipleViewController extends Controller
             'keywords' => $principleToView->getKeywords(),
             'title' => $principleToView->getTitle(),
             'explanation' => $principleToView->getExplanation(),
+            'previous' => $neighboursOfPrincipleToView['previous'],
+            'next' => $neighboursOfPrincipleToView['next'],
             'principlesInMenu' => $principlesInMenu
         ]);
 

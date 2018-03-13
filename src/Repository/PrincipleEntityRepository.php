@@ -24,7 +24,7 @@ class PrincipleEntityRepository extends ServiceEntityRepository
      *
      * @return array
      */
-    public function findAllTitles() : array
+    public function findAllTitles(): array
     {
         $titlesInArray = $this->createQueryBuilder('principle')
 
@@ -39,5 +39,58 @@ class PrincipleEntityRepository extends ServiceEntityRepository
         //converting the result array into numerically indexed array of just the title columns/keys
         return $arrayOfTitles = array_column($titlesInArray, 'title');
     }
+
+    /**
+     * Outputs an array containing the previous and next neighbours of a principle.
+     *
+     * @param string $titleToFind
+     * @param array $titles
+     * @return array
+     */
+    public function findNeighboursByTitle(string $titleToFind, array $titles = null): array
+    {
+        if ($titles===null)
+        {
+            $titles = $this->findAllTitles();
+        }
+        
+        //looping through all titles
+        foreach ($titles as $title)
+        {
+            //if the previous title was the title whose neighbours are to be found
+            if (isset($foundTitle))
+            {
+                $next = $title;
+                //end the loop
+                break;
+            }
+
+            //if this title matches title whose neighbours are to be found
+            if ($title===$titleToFind)
+            {
+                $foundTitle = $title;
+            }
+            else
+            {
+                $previous = $title;
+            }
+        }
+
+        //if no previous title
+        if (!isset($previous))
+        {
+            $previous = null;
+        }
+
+        //if no next title
+        if (!isset($next))
+        {
+            $next = null;
+        }
+        
+        return ['previous' => $previous, 'next' => $next];
+    }
+
+
     
 }
