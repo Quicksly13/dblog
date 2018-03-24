@@ -53,36 +53,6 @@ class PrincipleEditController extends Controller
             $principlesToSelect = [];
         }
 
-        /*switch ($title)
-        {
-            case 'select':
-
-                //get titles of all principles for the select menu
-                $principlesToSelect = $principleRepository->findAllTitles();
-
-                //no principle has been selected for editing
-                $principleToEdit = null;
- 
-                //a selection must be made whether to edit a current principle or add a new one
-                $selectMode = true;
-
-            break;
-
-            case 'Add a new principle':
-
-                //a principle is to be added
-                $principleToEdit = null;
-
-            break;
-
-            default://default case is to edit principle specified by the title
-
-                //get the specific principle to be edited on this page
-                $principleToEdit = $principleRepository->findOneBy(['title' => $title]);
-
-            break;
-        }*/
-
          //create a form for selecting whether to add or edit principles, or for adding new principles and editing existing ones
          $form = $this->createForm(PrincipleType::class, $principleToEdit, [
              'select_mode' => $selectMode,

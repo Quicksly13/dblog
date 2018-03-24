@@ -1,0 +1,11 @@
+
+#disable directory browsing
+Options All -Indexes
+
+RewriteEngine On
+
+
+#redirect all requests to the index folder
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^([^.]+)$ /dblog/public/index.php [NC,L]
+
