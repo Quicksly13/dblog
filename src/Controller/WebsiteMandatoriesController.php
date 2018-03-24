@@ -13,9 +13,9 @@ class WebsiteMandatoriesController extends Controller
     public function contact()
     {
         return $this->render('websitemandatories.html.twig', [
-            'description' => 'A secure access point for someone to',
-            'keywords' => 'principles, confirm edit, ',
-            'title' => 'Preview changes made to the Principles Of',
+            'description' => 'Contact the ',
+            'keywords' => 'contact, contact the author of ',
+            'title' => 'Contact',
             'content' => 'contact',
         ]);
     }
@@ -26,10 +26,23 @@ class WebsiteMandatoriesController extends Controller
     public function terms()
     {
         return $this->render('websitemandatories.html.twig', [
-            'description' => 'A secure access point for someone to',
-            'keywords' => 'principles, confirm edit, ',
-            'title' => 'Preview changes made to the Principles Of',
+            'description' => 'View the terms of use and privacy policy for this website',
+            'keywords' => 'terms of use, privacy policy, ',
+            'title' => 'Terms of Use',
             'content' => '',
+        ]);
+    }
+
+    /**
+     * @Route("/share", name="website_share")
+     */
+    public function share()
+    {
+        return $this->render('websitemandatories.html.twig', [
+            'description' => 'Share the principles of on various online platforms',
+            'keywords' => 'share the principles',
+            'title' => 'Share the Principles Of',
+            'content' => 'share',
         ]);
     }
 }

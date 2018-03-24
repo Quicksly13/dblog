@@ -3,5 +3,15 @@
 Options All -Indexes
 
 RewriteEngine On
+
+#redirect all requests to thte public folder
+RewriteCond %{HTTP_HOST} ^nobodythinks.net$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.nobodythinks.net$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
+
+
+#redirect all requests to the index folder
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteRule ^([^.]+)$ /dblog/public/index.php [NC,L]
+

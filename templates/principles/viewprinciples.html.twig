@@ -2,23 +2,23 @@
 
 {% block navbar %}
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-inverse bg-dark justify-content-center">
+<nav class="navbar sticky-top navbar-expand-lg navbar-principles justify-content-center">
     <div class="col-md-4 col-sm-3  ">
-        <a class="nav-link dropdown-toggle navmenu" href={{ path('view_principles', {'title': title}) }} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+        <a class=" dropdown-toggle" href={{ path('view_principles', {'title': title}) }} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            {{ title}}
+            {{title}}
         </a>
         <div class="dropdown-menu w-100 text-center nav-item bg-dark col-md-auto col-sm-auto" aria-labelledby="navbarDropdownMenuLink">
           {# Display all principle titles in the menu #}  
           {% for principle in principlesInMenu %}
               {% if principle == title %}
                 <a class="dropdown-item nav-link " href={{ path('view_principles', {'title': principle}) }}>
-                    <span class="navmenu">
+                    <span class="">
                       {{principle}}
                     </span>
                 </a>
               {% else %}
-                <a class="dropdown-item nav-link navmenu" href={{ path('view_principles', {'title': principle}) }}>
+                <a class="dropdown-item nav-link" href={{ path('view_principles', {'title': principle}) }}>
                   {{principle}}
                 </a>
               {% endif %}
@@ -41,8 +41,8 @@
 
 </div>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
+<nav aria-label="principle navigation">
+  <ul class="pagination justify-content-center principles-pagination">
     {% if previous is not null %}
       <li class="page-item">
         <a class="page-link" href={{ path('view_principles', {'title': previous}) }} aria-label="Previous">

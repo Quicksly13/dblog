@@ -18,7 +18,7 @@ class PrincipleViewController extends Controller
      * @param string $title Default value is set here as default value in home route annotation causes mismatch for all routes
      * @return object Symfony\Component\HttpFoundation\Response
      */
-    public function display(string $title = 'Principle1'): Response
+    public function display(string $title = 'Dharmism - What and Why'): Response
     {
         //obtain the repository of principles
         $principleRepository = $this->getDoctrine()->getRepository(PrincipleEntity::class);

@@ -153,12 +153,15 @@ class PrincipleEditController extends Controller
                     $entityManager->merge($principleToSave);
                     $entityManager->flush();
                 
-                    return $this->render('principles/editprinciples.html.twig', [
+                    /*return $this->render('principles/editprinciples.html.twig', [
                         'description' => 'A secure access point for someone to',
                         'keywords' => 'principles, confirm edit, ',
                         'title' => 'Confirm that changes made to the Principles Of',
                         'message' => 'Confirmed!'
-                    ]);
+                    ]);*/
+
+                    //send a RedirectResponse object to the display method of this controller
+                    return $this->redirectToRoute('edit_principles', ['title' => 'select']);
 
                 break;
 
