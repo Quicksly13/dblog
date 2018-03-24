@@ -6,5 +6,5 @@
 /src/Migrations/
 /var/
 /vendor/
-/assets/
+/resources/
 ###< symfony/framework-bundle ###

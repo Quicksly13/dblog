@@ -34,7 +34,7 @@ class PrincipleDownloadController extends Controller
         $appPath = $this->container->getParameter('kernel.root_dir');
 
         //get the relative directory path to the file to be downloaded
-        $filePath = realpath($appPath . '/../assets/tale0.pdf');
+        $filePath = realpath($appPath . '/../resources/tale0.pdf');
 
         //send a BinaryFileResponse to download the file
         return $this->file($filePath);

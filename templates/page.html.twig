@@ -12,7 +12,7 @@
     <link rel="canonical" href={{ app.request.uri }}>
     <title> {{ title }} </title>
     {#<link rel="shortcut icon" href="/assets/images/phicon_favicon.gif">#}
-    <link rel="shortcut icon" href={{ asset('/assets/images/phicon_favicon.gif')}}>
+    <link rel="shortcut icon" type="image/gif" href={{asset('img/phicon_favicon.gif')}}>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -21,7 +21,7 @@
     {% block css %} 
         {#<link rel="stylesheet" href= "{{app.request.getSchemeAndHttpHost}}/dblog/assets/css/custombs.css">
         <link rel="stylesheet" href= "{{app.request.getSchemeAndHttpHost}}/assets/css/custombs.css">#}
-        <link rel="stylesheet" href= {{ asset('/assets/css/custombs.css')}}>
+        <link rel="stylesheet" href= {{asset('css/custombs.css')}}>
     {% endblock css %}
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

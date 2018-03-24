@@ -1,0 +1,54 @@
+/*gold color list: #FAFAD2,#EEE8AA,#F0E68C,#DAA520,#FFD700,#FFDF00,#D4AF37,#CFB53B,#C5B358,#E6BE8A*/
+
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #000;
+  background-color: white;
+  /*max-width: 1080px;  /*  setting max width and centering body in browser */
+  /*margin: 0 auto !important;
+  float: none !important;*/
+}
+
+.navbar-principles,
+.navbar-principles .navbar-brand
+{
+  background-color: #000; 
+  color: #D4AF37;
+}
+
+
+
+
+/* styling for the dropdown menu  */
+#navbarDropdownMenuLink
+{
+  background-color: #000;
+  color: #D4AF37;
+}
+
+.navbar-principles .dropdown-menu
+{
+  background-color: #000;
+  color: #D4AF37;
+}
+
+.navbar-principles .nav-link
+{
+  background-color: #000;
+  color: #D4AF37
+}
+
+.navbar-principles .nav-link:hover
+{
+  background-color: #555;
+  color: #D4AF37;
+}
+
+/*styling for principles pagination*/
+.principles-pagination .page-link
+{
+  color: #D4AF37;
+}
