@@ -11,16 +11,13 @@
     <meta name="keywords" content= {{ keywords }} >
     <link rel="canonical" href={{ app.request.uri }}>
     <title> {{ title }} </title>
-    {#<link rel="shortcut icon" href="/assets/images/phicon_favicon.gif">#}
     <link rel="shortcut icon" type="image/gif" href={{asset('img/phicon_favicon.gif')}}>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- custom CSS -->
-    {% block css %} 
-        {#<link rel="stylesheet" href= "{{app.request.getSchemeAndHttpHost}}/dblog/assets/css/custombs.css">
-        <link rel="stylesheet" href= "{{app.request.getSchemeAndHttpHost}}/assets/css/custombs.css">#}
+    {% block css %}
         <link rel="stylesheet" href= {{asset('css/custombs.css')}}>
     {% endblock css %}
 
@@ -53,7 +50,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href={{path('logout')}}>Logout<span class="sr-only">logout</span></a>
-              </li>
+            </li>
           </ul>
         </div>
       </nav>
@@ -61,48 +58,40 @@
 
 {% endblock navbar %}
 
+<div class="container-fluid body-principles" style="margin-top:2em;margin-bottom:2em">
+
     {% block content %}
         {# html for the page content should be placed in this block #}
     {% endblock %}
 
+</div>
 
-    {% block footer %}
-        <footer class="footer text-center">
-            <div class="container">
-
-
-            <span class="text-muted">
-
-                <div>
-
-                    Author: First Last
-                </div>
-
-                <div>
-
-                    <a href={{path('website_share')}}>
-                        Share the Principles
-                    </a>
-                    &vert;
-                    <a href={{path('view_download_principles')}}>
-                        Download the Principles
-                    </a>
-                    &vert;
-                    <a href={{path('website_contact')}}>
-                        Contact
-                    </a>
-                    &vert;
-                    <a href={{path('website_terms')}}>
-                        Website Terms Of Use
-                    </a>
-                </div>
-
-            </span>
-
+{% block footer %}
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="text-muted">
+                Author: First Last
             </div>
-        </footer>
-
-    {% endblock footer %}
+            <div>
+                <a href={{path('website_share')}}>
+                    Share the Principles
+                </a>
+                &vert;
+                <a href={{path('view_download_principles')}}>
+                    Download the Principles
+                </a>
+                &vert;
+                <a href={{path('website_contact')}}>
+                    Contact
+                </a>
+                &vert;
+                <a href={{path('website_terms')}}>
+                    Website Terms Of Use
+                </a>
+            </div>
+        </div>
+    </footer>
+{% endblock footer %}
 
 </body>
 

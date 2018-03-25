@@ -3,7 +3,7 @@
 {% block navbar %}
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-principles justify-content-center">
-    <div class="col-md-4 col-sm-3  ">
+    <div class="col-md-4 col-sm-3">
         <a class=" dropdown-toggle" href={{ path('view_principles', {'title': title}) }} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             {{title}}
@@ -32,14 +32,14 @@
 
 {% block content %}
 
-<div class="container-fluid w-50" style="margin-top:2em;margin-bottom:2em">
+{# <div class="container-fluid body-principles" style="margin-top:2em;margin-bottom:2em">} #}
 
 
   {# Display the explanation of the principle without stripping HTML tags used for formatting #}  
   {{ explanation|raw }}
 
 
-</div>
+{# </div> #}
 
 <nav aria-label="principle navigation">
   <ul class="pagination justify-content-center principles-pagination">
