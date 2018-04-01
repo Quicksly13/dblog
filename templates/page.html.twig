@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--metadata for search engines-->
-    <meta name="description" content= {{ description }} >
-    <meta name="keywords" content= {{ keywords }} >
-    <link rel="canonical" href={{ app.request.uri }}>
-    <title> {{ title }} </title>
-    <link rel="shortcut icon" type="image/gif" href={{asset('img/phicon_favicon.gif')}}>
+    <meta name="description" content= "{{ description }}" >
+    <meta name="keywords" content= "{{ keywords }}" >
+    <link rel="canonical" href= "{{ app.request.uri }}" >
+    <title> {{ title|replace({' ':''}) }} </title>
+    <link rel="shortcut icon" type="image/gif" href= "{{asset('img/phicon_favicon.gif')}}" >
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
