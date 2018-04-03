@@ -43,10 +43,14 @@ body {
 }
 
 .navbar-principles .nav-link:hover,
-.principles-pagination .page-link:hover
+.principles-pagination .page-link:hover,
+.principles-pagination .page-link:active
 {
   background-color: #555;
   color: #D4AF37;
+  border-color: #555;
+  box-shadow: none;
+  outline: none;
 }
 
 /*styling for principles pagination*/
