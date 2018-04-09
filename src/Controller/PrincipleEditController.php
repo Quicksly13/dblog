@@ -62,9 +62,9 @@ class PrincipleEditController extends Controller
         ]);
 
         return $this->render('principles/editprinciples.html.twig', [
-            'description' => 'A secure access point for someone to',
+            'description' => 'An access point to edit the Principles Of Dharmism',
             'keywords' => 'principles, edit, ',
-            'title' => 'Edit, add or remove the Principles Of',
+            'title' => 'Edit, add or remove the Principles Of Dharmism',
             'form' => $form->createView()
         ]);
     }
@@ -105,9 +105,9 @@ class PrincipleEditController extends Controller
                 case 'preview':
 
                     return $this->render('principles/editprinciples.html.twig', [
-                        'description' => 'A secure access point for someone to',
+                        'description' => 'An access point to preview and confirm changes made to the Principles of Dharmism',
                         'keywords' => 'principles, confirm edit, ',
-                        'title' => 'Preview changes made to the Principles Of',
+                        'title' => 'Preview changes made to the Principles Of Dharmism',
                         'form' => $form->createView(),
                     ]);
 

@@ -13,8 +13,8 @@ class WebsiteMandatoriesController extends Controller
     public function contact()
     {
         return $this->render('websitemandatories.html.twig', [
-            'description' => 'Contact the ',
-            'keywords' => 'contact, contact the author of ',
+            'description' => 'Contact the First Dharmist',
+            'keywords' => 'contact, contact the author of the Principles of Dharmism, contact the First Dharmist, who is the First Dharmist?',
             'title' => 'Contact',
             'content' => 'contact',
         ]);
@@ -39,9 +39,9 @@ class WebsiteMandatoriesController extends Controller
     public function share()
     {
         return $this->render('websitemandatories.html.twig', [
-            'description' => 'Share the principles of on various online platforms',
-            'keywords' => 'share the principles',
-            'title' => 'Share the Principles Of',
+            'description' => 'Share the Principles of Dharmism on various online platforms',
+            'keywords' => 'share the principles, share dharmism, spread dharmism',
+            'title' => 'Share the Principles Of Dharmism',
             'content' => 'share',
         ]);
     }

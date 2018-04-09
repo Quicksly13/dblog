@@ -16,9 +16,9 @@ class PrincipleDownloadController extends Controller
     public function display(): Response
     {
         return $this->render('principles/downloadprinciples.html.twig', [
-            'description' => 'A page to download the',
+            'description' => 'A page to download the Principles Of Dharmism',
             'keywords' => 'principles, download, ',
-            'title' => 'Download the Principles Of',
+            'title' => 'Download the Principles Of Dharmism',
             'message' => 'download'
         ]);
     }
