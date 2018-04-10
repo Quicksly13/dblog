@@ -13,9 +13,9 @@ class WebsiteMandatoriesController extends Controller
     public function contact()
     {
         return $this->render('websitemandatories.html.twig', [
-            'description' => 'Contact the First Dharmist',
+            'description' => 'Contact the First Dharmist, the author of the Principles of Dharmism',
             'keywords' => 'contact, contact the author of the Principles of Dharmism, contact the First Dharmist, who is the First Dharmist?',
-            'title' => 'Contact',
+            'title' => 'Contact the First Dharmist',
             'content' => 'contact',
         ]);
     }
