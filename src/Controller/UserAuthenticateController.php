@@ -15,7 +15,7 @@ use App\Form\UserLoginType;
 class UserAuthenticateController extends Controller
 {
     /**
-     * @Route("/user/login", name="authenticate_user", methods={"POST", "GET"})
+     * @Route("/user/login", name="authenticate_user", methods={"POST", "GET"}, schemes={"https"})
      * 
      * @param object Symfony\Component\HttpFoundation\Request $request
      * @param object Symfony\Component\Security\Http\Authentication\AuthenticationUtils $authUtils
@@ -41,7 +41,7 @@ class UserAuthenticateController extends Controller
     }
 
     /**
-     * @Route("/user/{fresh}", name="freshen_user", methods={"POST", "GET"}, requirements={"authenticate"="register|reset"}, defaults={"fresh"="register"})
+     * @Route("/user/{fresh}", name="freshen_user", methods={"POST", "GET"}, requirements={"fresh"="register|reset"}, defaults={"fresh"="register"}, schemes={"https"})
      * 
      * @param object Symfony\Component\HttpFoundation\Request $request
      * @param object Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $encoder

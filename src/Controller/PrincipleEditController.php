@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class PrincipleEditController extends Controller
 {
     /**
-     * @Route("/principles/edit/{title}", name="edit_principles", methods={"GET"}, defaults={"title"="select"})
+     * @Route("/principles/edit/{title}", name="edit_principles", methods={"GET"}, defaults={"title"="select"}, schemes={"https"})
      * 
      * Displays either a list of principles for selecting whether to add or edit principles, or a form for adding new principles and editing existing ones.
      * 
@@ -70,7 +70,7 @@ class PrincipleEditController extends Controller
     }
 
     /**
-     * @Route("/principles/edit/{title}", name="confirm_principles", methods={"POST"}, defaults={"title"="select"})
+     * @Route("/principles/edit/{title}", name="confirm_principles", methods={"POST"}, defaults={"title"="select"}, schemes={"https"})
      * 
      * Displays a page to confirm edits or additions to the principles.
      * Once confirmed, saves those changes to the database.
