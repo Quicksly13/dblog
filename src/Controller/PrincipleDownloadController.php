@@ -31,10 +31,10 @@ class PrincipleDownloadController extends Controller
     public function transfer(): Response
     {
         //get the absolute directory path to the src folder
-        echo $appPath = $this->container->getParameter('kernel.root_dir');
+        $appPath = $this->container->getParameter('kernel.root_dir');
 
         //get the relative directory path to the file to be downloaded
-        echo $filePath = realpath($appPath . '/../resources/tale0.pdf');
+        $filePath = realpath($appPath . '/../resources/PrinciplesOfDharmism.pdf');
 
         //send a BinaryFileResponse to download the file
         return $this->file($filePath);
