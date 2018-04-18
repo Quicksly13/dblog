@@ -40,3 +40,7 @@ security:
         - { path: ^/principles/edit, roles: ROLE_USER }
         - { path: ^/user/register, roles: ROLE_NOBODY }
         - { path: ^/user/reset, roles: ROLE_NOBODY }
+        # Sets routes to use https on production server, and http on local host
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https, host: nobodythinks\.net$ }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: http, host: localhost$ }
+      
