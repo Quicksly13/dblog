@@ -3,7 +3,7 @@
 {% block navbar %}
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-principles justify-content-center">
-    <div class="col-md-4 col-sm-3">
+    {# <div class="col-md-4 col-sm-3"> #}
         <a class=" dropdown-toggle" href={{ path('view_principles', {'title': title}) }} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             {{title}}
@@ -24,7 +24,7 @@
               {% endif %}
           {% endfor %}
         </div>
-    </div>
+    {#</div> #}
 </nav>
 
 
