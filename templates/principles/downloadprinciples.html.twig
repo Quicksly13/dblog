@@ -1,5 +1,18 @@
 {% extends "page.html.twig" %} 
 
+{% block javascripts %}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118881643-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-118881643-1');
+    </script>
+
+{% endblock javascripts %}
+
 
 {% block content %}
 
